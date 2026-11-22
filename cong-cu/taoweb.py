@@ -17,7 +17,7 @@ Chỉ cần sửa phần CẤU HÌNH bên dưới nếu đổi tiêu đề.
 """
 
 # ======================= CẤU HÌNH =======================
-URL_TRANG   = "https://baiduthi-70nam-sqpb.vercel.app"   # địa chỉ trang trên Vercel – mã QR trỏ tới đây
+URL_TRANG   = "https://baithi70namsqpb.vercel.app"   # địa chỉ trang trên Vercel – mã QR trỏ tới đây
 TIEU_DE_NHO = "Bài dự thi tìm hiểu"
 TIEU_DE     = "70 năm Ngày truyền thống Trường Sĩ quan Pháo binh"
 MOC_THOI_GIAN = "18/02/1957 – 18/02/2027"
