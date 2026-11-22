@@ -17,6 +17,7 @@ Chỉ cần sửa phần CẤU HÌNH bên dưới nếu đổi tiêu đề.
 """
 
 # ======================= CẤU HÌNH =======================
+URL_TRANG   = "https://baiduthi-70nam-sqpb.vercel.app"   # địa chỉ trang trên Vercel – mã QR trỏ tới đây
 TIEU_DE_NHO = "Bài dự thi tìm hiểu"
 TIEU_DE     = "70 năm Ngày truyền thống Trường Sĩ quan Pháo binh"
 MOC_THOI_GIAN = "18/02/1957 – 18/02/2027"
@@ -29,7 +30,7 @@ SO_LAN_LAP_LA_HINH_NEN = 3 # ảnh xuất hiện từ ngần này lần trở l�
 
 import hashlib, html, os, re, shutil, subprocess, sys, tempfile, time
 from concurrent.futures import ThreadPoolExecutor
-from PIL import Image
+from PIL import Image, ImageDraw, ImageFont
 
 # Windows: in tiếng Việt ra Terminal không bị lỗi mã hóa
 for _s in (sys.stdout, sys.stderr):
@@ -65,6 +66,48 @@ def to_docx(src, tmp):
     subprocess.run([soffice, "--headless", "--convert-to", "docx", "--outdir", tmp, src],
                    check=True, capture_output=True)
     return os.path.join(tmp, os.path.splitext(os.path.basename(src))[0] + ".docx")
+
+
+def _font(names, size):
+    dirs = [os.path.join(os.environ.get("WINDIR", r"C:\Windows"), "Fonts"),
+            "/System/Library/Fonts/Supplemental", "/Library/Fonts",
+            "/usr/share/fonts/truetype/liberation", "/usr/share/fonts/truetype/dejavu"]
+    for n in names:
+        for d in dirs:
+            if os.path.exists(os.path.join(d, n)):
+                return ImageFont.truetype(os.path.join(d, n), size)
+    return ImageFont.load_default()
+
+
+def make_qr_files(outdir, logo_path):
+    """Tạo public/qr.png (mã QR có logo) và public/qr-in-an.png (thẻ để in)."""
+    sys.path.insert(0, HERE)
+    from qr import qr_image
+    qr = qr_image(URL_TRANG, scale=24, border=4, ecl="H")   # mức H: vẫn quét được khi có logo giữa
+    if logo_path and os.path.exists(logo_path):
+        s = qr.width // 5
+        lg = Image.open(logo_path).convert("RGB").resize((s, s))
+        pad = Image.new("RGB", (s + 16, s + 16), "white"); pad.paste(lg, (8, 8))
+        qr.paste(pad, ((qr.width - pad.width) // 2, (qr.height - pad.height) // 2))
+    qr.save(os.path.join(outdir, "qr.png"))
+
+    W, H = 1200, 1500
+    card = Image.new("RGB", (W, H), "#faf7f2"); d = ImageDraw.Draw(card)
+    d.rectangle([0, 0, W, 300], fill="#a3141b")
+    serif = ["timesbd.ttf", "Times New Roman Bold.ttf", "LiberationSerif-Bold.ttf", "DejaVuSerif-Bold.ttf"]
+    sans = ["arialbd.ttf", "Arial Bold.ttf", "DejaVuSans-Bold.ttf", "LiberationSans-Bold.ttf"]
+    def center(y, text, font, fill, maxw=W - 80):
+        while d.textlength(text, font=font) > maxw and getattr(font, "size", 0) > 20:
+            font = font.font_variant(size=font.size - 2)
+        d.text(((W - d.textlength(text, font=font)) / 2, y), text, font=font, fill=fill)
+    center(55, TIEU_DE_NHO.upper(), _font(sans, 40), "#ffd98a")
+    words = TIEU_DE.split(); half = (len(words) + 1) // 2
+    center(120, " ".join(words[:half]), _font(serif, 64), "white")
+    center(195, " ".join(words[half:]), _font(serif, 64), "white")
+    card.paste(qr.resize((860, 860), Image.NEAREST), ((W - 860) // 2, 350))
+    center(1250, "Quét mã QR để đọc toàn bộ bài dự thi", _font(serif, 50), "#1d1b19")
+    center(1330, URL_TRANG.replace("https://", ""), _font(sans, 34), "#a3141b")
+    card.save(os.path.join(outdir, "qr-in-an.png"), dpi=(300, 300))
 
 
 def find_pandoc():
@@ -173,6 +216,8 @@ def build(src, outdir):
         logo_html = '<img class="logo" src="img/logo.jpg" width="110" height="110" alt="Logo">'
         icon = '<link rel="icon" href="img/logo.jpg">'
 
+    make_qr_files(outdir, lp)
+
     pills = "".join(f'<a href="#cau-{n}">Câu {n}</a>' for n, _ in questions)
     toc = "".join(f'<li><a href="#cau-{n}"><b>Câu {n}</b><span>{html.escape(t)}</span></a></li>'
                   for n, t in questions)
@@ -183,13 +228,15 @@ def build(src, outdir):
                .replace("{{CHAN_TRANG}}", html.escape(CHAN_TRANG))
                .replace("{{LOGO}}", logo_html).replace("{{ICON}}", icon)
                .replace("{{NUT_CAU}}", pills).replace("{{MUC_LUC}}", toc)
-               .replace("{{NOI_DUNG}}", body))
+               .replace("{{NOI_DUNG}}", body)
+               .replace("{{URL_TRANG}}", html.escape(URL_TRANG)))
     open(os.path.join(outdir, "index.html"), "w", encoding="utf-8").write(page)
     shutil.rmtree(tmp, ignore_errors=True)
 
     size = sum(os.path.getsize(os.path.join(r, f)) for r, _, fs in os.walk(outdir) for f in fs)
     print(f"Xong trong {time.time()-t0:.1f} giây -> public/")
     print(f"  {len(questions)} câu hỏi: " + ", ".join(n for n, _ in questions))
+    print(f"  Mã QR -> {URL_TRANG}  (public/qr.png, public/qr-in-an.png)")
     print(f"  {len(jobs)} ảnh, bỏ {len(watermark)} hình nền, dung lượng {size/1e6:.1f} MB")
     if not questions:
         print("  CẢNH BÁO: không tìm thấy câu hỏi nào. Đoạn câu hỏi phải bắt đầu bằng 'Câu 1:' hoặc 'Câu hỏi 1:'.")
