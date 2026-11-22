@@ -44,6 +44,14 @@ p:has(> img){text-align:center}
 table{border-collapse:collapse;width:100%;font-size:16px;line-height:1.5;background:#fff}
 td,th{border:1px solid var(--line);padding:8px;vertical-align:top}
 blockquote{margin:0 0 14px;padding-left:16px;border-left:3px solid var(--line)}
+.qrbox{margin:50px 0 10px;text-align:center;background:#fff;border:1px solid var(--line);border-radius:14px;padding:26px 18px}
+.qrbox h2{margin:0 0 4px;color:var(--red);font-size:22px}
+.qrbox p{text-align:center;color:var(--muted);margin:0 0 10px}
+.qrbox img{width:240px;max-width:80%;height:auto;margin:4px auto;background:none}
+.qrbox .url{font:600 15px system-ui,sans-serif;color:var(--red);margin:6px 0 16px;word-break:break-all}
+.btns{display:flex;flex-wrap:wrap;gap:10px;justify-content:center}
+.btns a{font:600 15px system-ui,sans-serif;text-decoration:none;padding:10px 18px;border-radius:999px;border:1px solid var(--red);color:var(--red)}
+.btns a:first-child{background:var(--red);color:#fff}
 footer{text-align:center;color:var(--muted);font:14px system-ui,sans-serif;padding:30px 16px 40px;border-top:1px solid var(--line)}
 .top{position:fixed;right:16px;bottom:calc(18px + env(safe-area-inset-bottom));width:46px;height:46px;border-radius:50%;background:var(--red);color:#fff;display:grid;place-items:center;text-decoration:none;font:22px system-ui;box-shadow:0 4px 14px rgba(0,0,0,.25);opacity:0;pointer-events:none;transition:opacity .25s}
 .top.show{opacity:1;pointer-events:auto}
@@ -57,11 +65,12 @@ footer{text-align:center;color:var(--muted);font:14px system-ui,sans-serif;paddi
 <h1>70 năm Ngày truyền thống Trường Sĩ quan Pháo binh</h1>
 <div class="date">18/02/1957 – 18/02/2027</div>
 </header>
-<nav class="bar"><div class="in"><a href="#mo-dau">Mở đầu</a><a href="#cau-1">Câu 1</a><a href="#cau-2">Câu 2</a><a href="#cau-3">Câu 3</a><a href="#cau-4">Câu 4</a><a href="#cau-5">Câu 5</a><a href="#cau-6">Câu 6</a><a href="#cau-7">Câu 7</a></div><div class="prog"></div></nav>
+<nav class="bar"><div class="in"><a href="#mo-dau">Mở đầu</a><a href="#cau-1">Câu 1</a><a href="#cau-2">Câu 2</a><a href="#cau-3">Câu 3</a><a href="#cau-4">Câu 4</a><a href="#cau-5">Câu 5</a><a href="#cau-6">Câu 6</a><a href="#cau-7">Câu 7</a><a href="#ma-qr">Mã QR</a></div><div class="prog"></div></nav>
 <main>
 <div class="toc"><h2>Mục lục</h2><ol>
 <li><a href="#mo-dau"><b>Mở đầu</b></a></li>
 <li><a href="#cau-1"><b>Câu 1</b><span>Đồng chí cho biết ngày, tháng, năm thành lập và tên gọi tiền thân của Trường sĩ quan Pháo binh? Ai là Hiệu trưởng, Phó Hiệu trưởng đầu tiên của nhà trường?</span></a></li><li><a href="#cau-2"><b>Câu 2</b><span>Đồng chí nêu xứ mệnh và nhiệm vụ chính trị trung tâm hiện nay của Nhà trường? Các đối tượng Nhà trường đã đào tạo trong 70 năm qua?</span></a></li><li><a href="#cau-3"><b>Câu 3</b><span>Từ ngày thành lập đến nay, Đảng bộ Nhà trường đã qua bao nhiêu kỳ Đại hội? Đại hội Đảng bộ gần nhất diễn ra vào ngày, tháng, năm nào? Chủ đề của Đại hội là gì? Có bao nhiêu đại biểu đại diện cho bao nhiêu tổ chức đảng tham dự Đại hội? Đại hội bầu Ban chấp hành gồm mấy đồng chí? Đồng chí nào được bầu làm Bí thư, Phó Bí thư và ủy viên Ban Thường vụ?</span></a></li><li><a href="#cau-4"><b>Câu 4</b><span>Truyền thống 70 năm xây dựng và trưởng thành của Nhà trường được nêu khái quát là gì? Đồng chí hãy nêu rõ những biểu hiện đặc trưng của truyền thống đó?</span></a></li><li><a href="#cau-5"><b>Câu 5</b><span>Đồng chí cho biết Nhà trường được tuyên dương Anh hùng lực lượng vũ trang vào thời điểm nào? Có bao nhiêu thành tích khen thưởng của Nhà trường trong 70 năm xây dựng, trưởng thành?</span></a></li><li><a href="#cau-6"><b>Câu 6</b><span>Đồng chí nêu rõ họ tên, thời gian giữ chức vụ của các đồng chí trong Ban Giám hiệu Nhà trường; các đồng chí có học hàm Phó giáo sư, học vị Tiến sĩ; những đồng chí đạt danh hiệu Nhà giáo nhân dân; anh hùng Lực lượng vũ trang của Nhà trường 70 năm qua?Khái quát trình độ học vấn của cán bộ, giáo viên Nhà trường hiện nay và chỉ tiêu phấn đấu đến năm 2030?</span></a></li><li><a href="#cau-7"><b>Câu 7</b><span>Trên cương vị học tập, công tác của bản thân, đồng chí hãy viết những suy nghĩ, cảm tưởng về truyền thống vẻ vang của Nhà trường, từ đó đồng chí và đơn vị cần phải làm gì để phát huy truyền thống, xây dựng Nhà trường trong thời gian tới?</span></a></li>
+<li><a href="#ma-qr"><b>Mã QR</b><span>Quét hoặc tải mã QR để chia sẻ bài dự thi</span></a></li>
 </ol></div>
 <section id="mo-dau">
 <p> Trong suốt chiều dài lịch sử dựng nước và giữ nước của dân tộc Việt Nam, Quân đội nhân dân Việt Nam đã không ngừng trưởng thành, lớn mạnh, lập nên những chiến công vang dội, góp phần làm nên những trang sử vàng chói lọi của dân tộc. Trong hành trình vẻ vang ấy, Bộ đội Pháo binh luôn giữ vị trí quan trọng, là lực lượng hỏa lực chủ yếu của lục quân, góp phần tạo nên sức mạnh chiến đấu tổng hợp của quân đội. Trải qua các cuộc kháng chiến cũng như trong sự nghiệp xây dựng và bảo vệ Tổ quốc, các thế hệ cán bộ, chiến sĩ Pháo binh luôn phát huy tinh thần mưu trí, dũng cảm, đoàn kết, hiệp đồng chặt chẽ, lập nhiều chiến công xuất sắc, góp phần tô thắm truyền thống anh hùng của Quân đội nhân dân Việt Nam.</p>
@@ -743,6 +752,13 @@ footer{text-align:center;color:var(--muted);font:14px system-ui,sans-serif;paddi
 <p><em><strong>Tự hào về truyền thống 70 năm vẻ vang của Trường Sĩ quan Pháo binh, tôi càng ý thức sâu sắc rằng: lấy truyền thống làm động lực, lấy kỷ luật làm nền tảng, lấy trách nhiệm làm phương châm, lấy khoa học công nghệ và đổi mới sáng tạo làm công cụ, mỗi quân nhân hôm nay phải không ngừng phấn đấu, cống hiến để viết tiếp những trang sử vẻ vang của Nhà trường.</strong></em></p>
 
 
+</section>
+<section id="ma-qr" class="qrbox">
+<h2>Mã QR của bài dự thi</h2>
+<p>Quét mã để mở trang này trên điện thoại</p>
+<img src="qr.png" width="264" height="264" alt="Mã QR trỏ tới https://baiduthi-70nam-sqpb.vercel.app">
+<div class="url">https://baiduthi-70nam-sqpb.vercel.app</div>
+<div class="btns"><a href="qr-in-an.png" download="ma-qr-bai-du-thi.png">Tải mã QR để in</a><a href="qr.png" download="ma-qr.png">Tải mã QR gốc</a></div>
 </section>
 </main>
 <footer>Bài dự thi tìm hiểu 70 năm Ngày truyền thống Trường Sĩ quan Pháo binh</footer>
