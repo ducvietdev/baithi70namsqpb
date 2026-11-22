@@ -204,7 +204,13 @@ def build(src, outdir):
     # 5) nhãn "Trả lời"
     body = re.sub(r'<p>(?:\s|<(?:strong|em)>)*Trả lời(?:\s|</?(?:strong|em)>)*:?(?:\s|</?(?:strong|em)>)*',
                   '<p><span class="ans">Trả lời:</span> ', body, flags=re.I)
-    body = re.sub(r"<table[^>]*>", '<div class="tw"><table>', body).replace("</table>", "</table></div>")
+    # bảng chứa ảnh = bảng trình bày ảnh (xếp dọc trên điện thoại); bảng chữ = cuộn ngang
+    def wrap_table(m):
+        t = re.sub(r"<colgroup>.*?</colgroup>", "", m.group(0), flags=re.S)
+        t = re.sub(r"<table[^>]*>", "<table>", t, count=1)
+        kind = "tw gallery" if "<img" in t else "tw"
+        return f'<div class="{kind}">{t}</div>'
+    body = re.sub(r"<table.*?</table>", wrap_table, body, flags=re.S)
     body = re.sub(r"<p>\s*</p>", "", body)
 
     # 6) logo
