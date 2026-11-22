@@ -1,0 +1,6 @@
+# File Word nặng (~40 MB) – không đưa lên git, chỉ đưa trang đã tạo trong public/
+tai-lieu/*.doc
+tai-lieu/*.docx
+~$*
+__pycache__/
+.DS_Store

@@ -1,0 +1,29 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "Tạo trang web",
+      "type": "shell",
+      "command": "python3 cong-cu/taoweb.py",
+      "windows": { "command": "python cong-cu/taoweb.py" },
+      "group": { "kind": "build", "isDefault": true },
+      "problemMatcher": [],
+      "presentation": { "reveal": "always", "clear": true }
+    },
+    {
+      "label": "Xem thử trên máy (http://localhost:8000)",
+      "type": "shell",
+      "command": "python3 -m http.server 8000 -d public",
+      "windows": { "command": "python -m http.server 8000 -d public" },
+      "isBackground": true,
+      "problemMatcher": []
+    },
+    {
+      "label": "Cài thư viện (chạy 1 lần)",
+      "type": "shell",
+      "command": "python3 -m pip install -r requirements.txt",
+      "windows": { "command": "python -m pip install -r requirements.txt" },
+      "problemMatcher": []
+    }
+  ]
+}
