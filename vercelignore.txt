@@ -1,0 +1,5 @@
+# Chỉ đăng thư mục public/ – không đưa công cụ Python lên Vercel
+cong-cu/
+tai-lieu/
+.vscode/
+README.md

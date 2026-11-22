@@ -21,8 +21,8 @@
     {
       "label": "Cài thư viện (chạy 1 lần)",
       "type": "shell",
-      "command": "python3 -m pip install -r requirements.txt",
-      "windows": { "command": "python -m pip install -r requirements.txt" },
+      "command": "python3 -m pip install -r cong-cu/requirements.txt",
+      "windows": { "command": "python -m pip install -r cong-cu/requirements.txt" },
       "problemMatcher": []
     }
   ]
