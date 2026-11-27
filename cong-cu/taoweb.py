@@ -21,6 +21,12 @@ URL_TRANG   = "https://baithi70namsqpb.vercel.app"   # địa chỉ trang trên 
 TIEU_DE_NHO = "Bài dự thi tìm hiểu"
 TIEU_DE     = "70 năm Ngày truyền thống Trường Sĩ quan Pháo binh"
 MOC_THOI_GIAN = "18/02/1957 – 18/02/2027"
+NHOM_TAC_GIA = [                # mỗi người một dòng; để [] nếu không hiện
+    "Trung úy Nguyễn Việt Đức",
+    "Trung tá, CN Phùng Thị Gấm",
+    "Đại úy, CN Nguyễn Minh Hải",
+]
+CHI_DAO_NOI_DUNG = "Đảng ủy Phòng TM-HC"   # để "" nếu không hiện
 CHAN_TRANG  = "Bài dự thi tìm hiểu 70 năm Ngày truyền thống Trường Sĩ quan Pháo binh"
 LOGO        = "logo.jpg"   # ảnh logo đặt cạnh file này; để "" nếu không dùng
 ANH_TOI_DA  = 1400         # cạnh dài tối đa của ảnh (px) – nhỏ hơn = trang nhẹ hơn
@@ -227,11 +233,22 @@ def build(src, outdir):
     pills = "".join(f'<a href="#cau-{n}">Câu {n}</a>' for n, _ in questions)
     toc = "".join(f'<li><a href="#cau-{n}"><b>Câu {n}</b><span>{html.escape(t)}</span></a></li>'
                   for n, t in questions)
+    credit = ""
+    if NHOM_TAC_GIA or CHI_DAO_NOI_DUNG:
+        credit = '<div class="credit">'
+        if NHOM_TAC_GIA:
+            credit += ('<div class="cr"><div class="lbl">Nhóm tác giả</div><ul>'
+                       + "".join(f"<li>{html.escape(n)}</li>" for n in NHOM_TAC_GIA) + "</ul></div>")
+        if CHI_DAO_NOI_DUNG:
+            credit += (f'<div class="cr"><div class="lbl">Chỉ đạo nội dung</div>'
+                       f'<ul><li>{html.escape(CHI_DAO_NOI_DUNG)}</li></ul></div>')
+        credit += "</div>"
     tpl = open(os.path.join(HERE, "mau.html"), encoding="utf-8").read()
     page = (tpl.replace("{{TIEU_DE_NHO}}", html.escape(TIEU_DE_NHO))
                .replace("{{TIEU_DE}}", html.escape(TIEU_DE))
                .replace("{{MOC_THOI_GIAN}}", html.escape(MOC_THOI_GIAN))
                .replace("{{CHAN_TRANG}}", html.escape(CHAN_TRANG))
+               .replace("{{TAC_GIA}}", credit)
                .replace("{{LOGO}}", logo_html).replace("{{ICON}}", icon)
                .replace("{{NUT_CAU}}", pills).replace("{{MUC_LUC}}", toc)
                .replace("{{NOI_DUNG}}", body)
