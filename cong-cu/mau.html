@@ -18,7 +18,7 @@ body{margin:0;background:var(--bg);color:var(--ink);font:18px/1.75 "Times New Ro
 .kicker{font:600 13px/1.4 system-ui,sans-serif;letter-spacing:.18em;text-transform:uppercase;color:#ffd98a;margin:18px 0 6px}
 .hero h1{text-wrap:balance;font-size:clamp(24px,5vw,38px);line-height:1.25;margin:0 auto;max-width:760px}
 .date{margin-top:10px;color:#ffe9bd}
-.credit{margin:24px 0 10px;background:#fff;border:1px solid var(--line);border-top:4px solid var(--red);border-radius:14px;padding:22px 24px;display:flex;flex-wrap:wrap;gap:18px 48px;justify-content:center}
+.credit{margin:0 0 26px;background:#fff;border:1px solid var(--line);border-top:4px solid var(--red);border-radius:14px;padding:22px 24px;display:flex;flex-wrap:wrap;gap:18px 48px;justify-content:space-around}
 .cr{text-align:center}
 .cr .lbl{font:700 13px/1.4 system-ui,sans-serif;letter-spacing:.14em;text-transform:uppercase;color:var(--red);margin-bottom:6px}
 .cr ul{list-style:none;margin:0;padding:0;font-size:18px;line-height:1.65}
@@ -135,6 +135,7 @@ footer{text-align:center;color:var(--muted);font:14px system-ui,sans-serif;paddi
 {{MUC_LUC}}
 <li><a href="#ma-qr"><b>Mã QR</b><span>Quét hoặc tải mã QR để chia sẻ bài dự thi</span></a></li>
 </ol></div>
+{{TAC_GIA}}
 <section id="mo-dau">
 {{NOI_DUNG}}
 </section>
@@ -144,7 +145,6 @@ footer{text-align:center;color:var(--muted);font:14px system-ui,sans-serif;paddi
 <img src="qr.png" width="264" height="264" alt="Mã QR trỏ tới {{URL_TRANG}}">
 <div class="btns"><a href="qr-in-an.png" download="ma-qr-bai-du-thi.png">Tải mã QR để in</a><a href="qr.png" download="ma-qr.png">Tải mã QR gốc</a></div>
 </section>
-{{TAC_GIA}}
 </main>
 <footer>{{CHAN_TRANG}}</footer>
 <a class="top" href="#dau-trang" aria-label="Lên đầu trang">↑</a>

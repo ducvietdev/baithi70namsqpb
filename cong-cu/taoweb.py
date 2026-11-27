@@ -235,12 +235,12 @@ def build(src, outdir):
     credit = ""
     if NHOM_TAC_GIA or CHI_DAO_NOI_DUNG:
         credit = '<section class="credit" id="tac-gia">'
-        if NHOM_TAC_GIA:
-            credit += ('<div class="cr"><div class="lbl">Nhóm tác giả</div><ul>'
-                       + "".join(f"<li>{html.escape(n)}</li>" for n in NHOM_TAC_GIA) + "</ul></div>")
         if CHI_DAO_NOI_DUNG:
             credit += (f'<div class="cr"><div class="lbl">Chỉ đạo nội dung</div>'
                        f'<ul><li>{html.escape(CHI_DAO_NOI_DUNG)}</li></ul></div>')
+        if NHOM_TAC_GIA:
+            credit += ('<div class="cr"><div class="lbl">Nhóm tác giả</div><ul>'
+                       + "".join(f"<li>{html.escape(n)}</li>" for n in NHOM_TAC_GIA) + "</ul></div>")
         credit += "</section>"
     tpl = open(os.path.join(HERE, "mau.html"), encoding="utf-8").read()
     page = (tpl.replace("{{TIEU_DE_NHO}}", html.escape(TIEU_DE_NHO))
