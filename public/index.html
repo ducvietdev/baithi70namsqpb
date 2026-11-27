@@ -48,6 +48,12 @@ p:has(> img){text-align:center}
 table{border-collapse:collapse;width:100%;font-size:16px;line-height:1.5;background:#fff}
 td,th{border:1px solid var(--line);padding:8px;vertical-align:top}
 blockquote{margin:0 0 14px;padding-left:16px;border-left:3px solid var(--line)}
+.dl{display:inline-flex;align-items:center;gap:12px;margin-top:20px;padding:10px 20px 10px 12px;border-radius:999px;background:#fff;color:var(--red);text-decoration:none;box-shadow:0 4px 14px rgba(0,0,0,.2);text-align:left;transition:transform .15s}
+.dl:active{transform:scale(.97)}
+.dl .ic{display:grid;place-items:center;width:36px;height:36px;border-radius:50%;background:var(--red);color:#fff;font:700 18px system-ui}
+.dl b{display:block;font:700 16px/1.2 system-ui,sans-serif}
+.dl small{display:block;font:13px/1.3 system-ui,sans-serif;color:var(--muted)}
+.qrdl .dl{margin:0 0 14px;box-shadow:none;border:1px solid var(--line)}
 .qrbox{margin:50px 0 10px;text-align:center;background:#fff;border:1px solid var(--line);border-radius:14px;padding:26px 18px}
 .qrbox h2{margin:0 0 4px;color:var(--red);font-size:22px}
 .qrbox p{text-align:center;color:var(--muted);margin:0 0 10px}
@@ -103,8 +109,16 @@ footer{text-align:center;color:var(--muted);font:14px system-ui,sans-serif;paddi
   .gallery tr{margin:0}
   .gallery td{padding:8px 0 14px}
   .gallery td:empty{display:none}
-  .qrbox{padding:20px 14px;margin-top:36px}
+  .dl{display:inline-flex;align-items:center;gap:12px;margin-top:20px;padding:10px 20px 10px 12px;border-radius:999px;background:#fff;color:var(--red);text-decoration:none;box-shadow:0 4px 14px rgba(0,0,0,.2);text-align:left;transition:transform .15s}
+.dl:active{transform:scale(.97)}
+.dl .ic{display:grid;place-items:center;width:36px;height:36px;border-radius:50%;background:var(--red);color:#fff;font:700 18px system-ui}
+.dl b{display:block;font:700 16px/1.2 system-ui,sans-serif}
+.dl small{display:block;font:13px/1.3 system-ui,sans-serif;color:var(--muted)}
+.qrdl .dl{margin:0 0 14px;box-shadow:none;border:1px solid var(--line)}
+.qrbox{padding:20px 14px;margin-top:36px}
   .btns a{flex:1 1 100%;text-align:center}
+  .dl{margin-top:16px}
+  .qrdl .dl{display:flex;width:100%}
   .top{width:42px;height:42px;right:12px;font-size:20px}
   footer{font-size:13px;padding:24px 14px 70px}
 }
@@ -127,14 +141,15 @@ footer{text-align:center;color:var(--muted);font:14px system-ui,sans-serif;paddi
 <div class="kicker">Bài dự thi tìm hiểu</div>
 <h1>70 năm Ngày truyền thống Trường Sĩ quan Pháo binh</h1>
 <div class="date">18/02/1957 – 18/02/2027</div>
+<a class="dl" href="bai-du-thi-70-nam-truong-si-quan-phao-binh.docx" download><span class="ic">⬇</span><span><b>Tải bài dự thi</b><small>File Word (.docx) · 16 MB</small></span></a>
 </header>
-<nav class="bar"><div class="in"><a href="#mo-dau">Mở đầu</a><a href="#cau-1">Câu 1</a><a href="#cau-2">Câu 2</a><a href="#cau-3">Câu 3</a><a href="#cau-4">Câu 4</a><a href="#cau-5">Câu 5</a><a href="#cau-6">Câu 6</a><a href="#cau-7">Câu 7</a><a href="#ma-qr">Mã QR</a></div><div class="prog"></div></nav>
+<nav class="bar"><div class="in"><a href="#mo-dau">Mở đầu</a><a href="#cau-1">Câu 1</a><a href="#cau-2">Câu 2</a><a href="#cau-3">Câu 3</a><a href="#cau-4">Câu 4</a><a href="#cau-5">Câu 5</a><a href="#cau-6">Câu 6</a><a href="#cau-7">Câu 7</a><a href="#ma-qr">Mã QR · Tải về</a></div><div class="prog"></div></nav>
 <main>
 <section class="credit" id="tac-gia"><div class="cr"><div class="lbl">Chỉ đạo nội dung</div><ul><li>Đảng ủy Phòng TM-HC</li></ul></div><div class="cr"><div class="lbl">Nhóm tác giả</div><ul><li>Trung úy Nguyễn Việt Đức</li><li>Trung tá, CN Phùng Thị Gấm</li><li>Đại úy, CN Nguyễn Minh Hải</li></ul></div></section>
 <div class="toc"><h2>Mục lục</h2><ol>
 <li><a href="#mo-dau"><b>Mở đầu</b></a></li>
 <li><a href="#cau-1"><b>Câu 1</b><span>Đồng chí cho biết ngày, tháng, năm thành lập và tên gọi tiền thân của Trường sĩ quan Pháo binh? Ai là Hiệu trưởng, Phó Hiệu trưởng đầu tiên của nhà trường?</span></a></li><li><a href="#cau-2"><b>Câu 2</b><span>Đồng chí nêu xứ mệnh và nhiệm vụ chính trị trung tâm hiện nay của Nhà trường? Các đối tượng Nhà trường đã đào tạo trong 70 năm qua?</span></a></li><li><a href="#cau-3"><b>Câu 3</b><span>Từ ngày thành lập đến nay, Đảng bộ Nhà trường đã qua bao nhiêu kỳ Đại hội? Đại hội Đảng bộ gần nhất diễn ra vào ngày, tháng, năm nào? Chủ đề của Đại hội là gì? Có bao nhiêu đại biểu đại diện cho bao nhiêu tổ chức đảng tham dự Đại hội? Đại hội bầu Ban chấp hành gồm mấy đồng chí? Đồng chí nào được bầu làm Bí thư, Phó Bí thư và ủy viên Ban Thường vụ?</span></a></li><li><a href="#cau-4"><b>Câu 4</b><span>Truyền thống 70 năm xây dựng và trưởng thành của Nhà trường được nêu khái quát là gì? Đồng chí hãy nêu rõ những biểu hiện đặc trưng của truyền thống đó?</span></a></li><li><a href="#cau-5"><b>Câu 5</b><span>Đồng chí cho biết Nhà trường được tuyên dương Anh hùng lực lượng vũ trang vào thời điểm nào? Có bao nhiêu thành tích khen thưởng của Nhà trường trong 70 năm xây dựng, trưởng thành?</span></a></li><li><a href="#cau-6"><b>Câu 6</b><span>Đồng chí nêu rõ họ tên, thời gian giữ chức vụ của các đồng chí trong Ban Giám hiệu Nhà trường; các đồng chí có học hàm Phó giáo sư, học vị Tiến sĩ; những đồng chí đạt danh hiệu Nhà giáo nhân dân; anh hùng Lực lượng vũ trang của Nhà trường 70 năm qua?Khái quát trình độ học vấn của cán bộ, giáo viên Nhà trường hiện nay và chỉ tiêu phấn đấu đến năm 2030?</span></a></li><li><a href="#cau-7"><b>Câu 7</b><span>Trên cương vị học tập, công tác của bản thân, đồng chí hãy viết những suy nghĩ, cảm tưởng về truyền thống vẻ vang của Nhà trường, từ đó đồng chí và đơn vị cần phải làm gì để phát huy truyền thống, xây dựng Nhà trường trong thời gian tới?</span></a></li>
-<li><a href="#ma-qr"><b>Mã QR</b><span>Quét hoặc tải mã QR để chia sẻ bài dự thi</span></a></li>
+<li><a href="#ma-qr"><b>Tải về</b><span>Mã QR và file Word bài dự thi</span></a></li>
 </ol></div>
 <section id="mo-dau">
 <p> Trong suốt chiều dài lịch sử dựng nước và giữ nước của dân tộc Việt Nam, Quân đội nhân dân Việt Nam đã không ngừng trưởng thành, lớn mạnh, lập nên những chiến công vang dội, góp phần làm nên những trang sử vàng chói lọi của dân tộc. Trong hành trình vẻ vang ấy, Bộ đội Pháo binh luôn giữ vị trí quan trọng, là lực lượng hỏa lực chủ yếu của lục quân, góp phần tạo nên sức mạnh chiến đấu tổng hợp của quân đội. Trải qua các cuộc kháng chiến cũng như trong sự nghiệp xây dựng và bảo vệ Tổ quốc, các thế hệ cán bộ, chiến sĩ Pháo binh luôn phát huy tinh thần mưu trí, dũng cảm, đoàn kết, hiệp đồng chặt chẽ, lập nhiều chiến công xuất sắc, góp phần tô thắm truyền thống anh hùng của Quân đội nhân dân Việt Nam.</p>
@@ -777,9 +792,10 @@ footer{text-align:center;color:var(--muted);font:14px system-ui,sans-serif;paddi
 
 </section>
 <section id="ma-qr" class="qrbox">
-<h2>Mã QR của bài dự thi</h2>
+<h2>Mã QR &amp; tải bài dự thi</h2>
 <p>Quét mã để mở trang này trên điện thoại</p>
 <img src="qr.png" width="264" height="264" alt="Mã QR trỏ tới https://baithi70namsqpb.vercel.app">
+<div class="qrdl"><a class="dl" href="bai-du-thi-70-nam-truong-si-quan-phao-binh.docx" download><span class="ic">⬇</span><span><b>Tải bài dự thi</b><small>File Word (.docx) · 16 MB</small></span></a></div>
 <div class="btns"><a href="qr-in-an.png" download="ma-qr-bai-du-thi.png">Tải mã QR để in</a><a href="qr.png" download="ma-qr.png">Tải mã QR gốc</a></div>
 </section>
 </main>

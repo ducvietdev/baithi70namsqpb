@@ -48,6 +48,12 @@ p:has(> img){text-align:center}
 table{border-collapse:collapse;width:100%;font-size:16px;line-height:1.5;background:#fff}
 td,th{border:1px solid var(--line);padding:8px;vertical-align:top}
 blockquote{margin:0 0 14px;padding-left:16px;border-left:3px solid var(--line)}
+.dl{display:inline-flex;align-items:center;gap:12px;margin-top:20px;padding:10px 20px 10px 12px;border-radius:999px;background:#fff;color:var(--red);text-decoration:none;box-shadow:0 4px 14px rgba(0,0,0,.2);text-align:left;transition:transform .15s}
+.dl:active{transform:scale(.97)}
+.dl .ic{display:grid;place-items:center;width:36px;height:36px;border-radius:50%;background:var(--red);color:#fff;font:700 18px system-ui}
+.dl b{display:block;font:700 16px/1.2 system-ui,sans-serif}
+.dl small{display:block;font:13px/1.3 system-ui,sans-serif;color:var(--muted)}
+.qrdl .dl{margin:0 0 14px;box-shadow:none;border:1px solid var(--line)}
 .qrbox{margin:50px 0 10px;text-align:center;background:#fff;border:1px solid var(--line);border-radius:14px;padding:26px 18px}
 .qrbox h2{margin:0 0 4px;color:var(--red);font-size:22px}
 .qrbox p{text-align:center;color:var(--muted);margin:0 0 10px}
@@ -103,8 +109,16 @@ footer{text-align:center;color:var(--muted);font:14px system-ui,sans-serif;paddi
   .gallery tr{margin:0}
   .gallery td{padding:8px 0 14px}
   .gallery td:empty{display:none}
-  .qrbox{padding:20px 14px;margin-top:36px}
+  .dl{display:inline-flex;align-items:center;gap:12px;margin-top:20px;padding:10px 20px 10px 12px;border-radius:999px;background:#fff;color:var(--red);text-decoration:none;box-shadow:0 4px 14px rgba(0,0,0,.2);text-align:left;transition:transform .15s}
+.dl:active{transform:scale(.97)}
+.dl .ic{display:grid;place-items:center;width:36px;height:36px;border-radius:50%;background:var(--red);color:#fff;font:700 18px system-ui}
+.dl b{display:block;font:700 16px/1.2 system-ui,sans-serif}
+.dl small{display:block;font:13px/1.3 system-ui,sans-serif;color:var(--muted)}
+.qrdl .dl{margin:0 0 14px;box-shadow:none;border:1px solid var(--line)}
+.qrbox{padding:20px 14px;margin-top:36px}
   .btns a{flex:1 1 100%;text-align:center}
+  .dl{margin-top:16px}
+  .qrdl .dl{display:flex;width:100%}
   .top{width:42px;height:42px;right:12px;font-size:20px}
   footer{font-size:13px;padding:24px 14px 70px}
 }
@@ -127,22 +141,24 @@ footer{text-align:center;color:var(--muted);font:14px system-ui,sans-serif;paddi
 <div class="kicker">{{TIEU_DE_NHO}}</div>
 <h1>{{TIEU_DE}}</h1>
 <div class="date">{{MOC_THOI_GIAN}}</div>
+{{TAI_WORD}}
 </header>
-<nav class="bar"><div class="in"><a href="#mo-dau">Mở đầu</a>{{NUT_CAU}}<a href="#ma-qr">Mã QR</a></div><div class="prog"></div></nav>
+<nav class="bar"><div class="in"><a href="#mo-dau">Mở đầu</a>{{NUT_CAU}}<a href="#ma-qr">Mã QR · Tải về</a></div><div class="prog"></div></nav>
 <main>
 {{TAC_GIA}}
 <div class="toc"><h2>Mục lục</h2><ol>
 <li><a href="#mo-dau"><b>Mở đầu</b></a></li>
 {{MUC_LUC}}
-<li><a href="#ma-qr"><b>Mã QR</b><span>Quét hoặc tải mã QR để chia sẻ bài dự thi</span></a></li>
+<li><a href="#ma-qr"><b>Tải về</b><span>Mã QR và file Word bài dự thi</span></a></li>
 </ol></div>
 <section id="mo-dau">
 {{NOI_DUNG}}
 </section>
 <section id="ma-qr" class="qrbox">
-<h2>Mã QR của bài dự thi</h2>
+<h2>Mã QR &amp; tải bài dự thi</h2>
 <p>Quét mã để mở trang này trên điện thoại</p>
 <img src="qr.png" width="264" height="264" alt="Mã QR trỏ tới {{URL_TRANG}}">
+<div class="qrdl">{{TAI_WORD}}</div>
 <div class="btns"><a href="qr-in-an.png" download="ma-qr-bai-du-thi.png">Tải mã QR để in</a><a href="qr.png" download="ma-qr.png">Tải mã QR gốc</a></div>
 </section>
 </main>

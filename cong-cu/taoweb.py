@@ -28,6 +28,8 @@ NHOM_TAC_GIA = [                # mỗi người một dòng; để [] nếu kh�
 ]
 CHI_DAO_NOI_DUNG = "Đảng ủy Phòng TM-HC"   # để "" nếu không hiện
 CHAN_TRANG  = "Bài dự thi tìm hiểu 70 năm Ngày truyền thống Trường Sĩ quan Pháo binh"
+CHO_TAI_WORD = True       # hiện nút tải file Word (.docx) trên trang; False để ẩn
+TEN_FILE_WORD = "bai-du-thi-70-nam-truong-si-quan-phao-binh.docx"   # tên file khi người đọc tải về
 LOGO        = "logo.jpg"   # ảnh logo đặt cạnh file này; để "" nếu không dùng
 ANH_TOI_DA  = 1400         # cạnh dài tối đa của ảnh (px) – nhỏ hơn = trang nhẹ hơn
 CHAT_LUONG_ANH = 78        # chất lượng JPEG 1–95
@@ -144,7 +146,8 @@ def strip_tags(s):
 def build(src, outdir):
     t0 = time.time()
     tmp = tempfile.mkdtemp()
-    body = docx_to_html(to_docx(src, tmp), tmp)
+    docx_path = to_docx(src, tmp)
+    body = docx_to_html(docx_path, tmp)
 
     img_re = re.compile(r'<img\s+src="([^"]+)"\s*(?:style="([^"]*)")?[^>]*?/?>', re.S)
 
@@ -242,12 +245,20 @@ def build(src, outdir):
             credit += ('<div class="cr"><div class="lbl">Nhóm tác giả</div><ul>'
                        + "".join(f"<li>{html.escape(n)}</li>" for n in NHOM_TAC_GIA) + "</ul></div>")
         credit += "</section>"
+    # nút tải file Word gốc
+    dl = ""
+    if CHO_TAI_WORD:
+        shutil.copyfile(docx_path, os.path.join(outdir, TEN_FILE_WORD))
+        mb = os.path.getsize(docx_path) / 1e6
+        dl = (f'<a class="dl" href="{html.escape(TEN_FILE_WORD)}" download>'
+              f'<span class="ic">⬇</span><span><b>Tải bài dự thi</b><small>File Word (.docx) · {mb:.0f} MB</small></span></a>')
     tpl = open(os.path.join(HERE, "mau.html"), encoding="utf-8").read()
     page = (tpl.replace("{{TIEU_DE_NHO}}", html.escape(TIEU_DE_NHO))
                .replace("{{TIEU_DE}}", html.escape(TIEU_DE))
                .replace("{{MOC_THOI_GIAN}}", html.escape(MOC_THOI_GIAN))
                .replace("{{CHAN_TRANG}}", html.escape(CHAN_TRANG))
                .replace("{{TAC_GIA}}", credit)
+               .replace("{{TAI_WORD}}", dl)
                .replace("{{LOGO}}", logo_html).replace("{{ICON}}", icon)
                .replace("{{NUT_CAU}}", pills).replace("{{MUC_LUC}}", toc)
                .replace("{{NOI_DUNG}}", body)
