@@ -112,7 +112,6 @@ def make_qr_files(outdir, logo_path):
     center(195, " ".join(words[half:]), _font(serif, 64), "white")
     card.paste(qr.resize((860, 860), Image.NEAREST), ((W - 860) // 2, 350))
     center(1250, "Quét mã QR để đọc toàn bộ bài dự thi", _font(serif, 50), "#1d1b19")
-    center(1330, URL_TRANG.replace("https://", ""), _font(sans, 34), "#a3141b")
     card.save(os.path.join(outdir, "qr-in-an.png"), dpi=(300, 300))
 
 
@@ -235,14 +234,14 @@ def build(src, outdir):
                   for n, t in questions)
     credit = ""
     if NHOM_TAC_GIA or CHI_DAO_NOI_DUNG:
-        credit = '<div class="credit">'
+        credit = '<section class="credit" id="tac-gia">'
         if NHOM_TAC_GIA:
             credit += ('<div class="cr"><div class="lbl">Nhóm tác giả</div><ul>'
                        + "".join(f"<li>{html.escape(n)}</li>" for n in NHOM_TAC_GIA) + "</ul></div>")
         if CHI_DAO_NOI_DUNG:
             credit += (f'<div class="cr"><div class="lbl">Chỉ đạo nội dung</div>'
                        f'<ul><li>{html.escape(CHI_DAO_NOI_DUNG)}</li></ul></div>')
-        credit += "</div>"
+        credit += "</section>"
     tpl = open(os.path.join(HERE, "mau.html"), encoding="utf-8").read()
     page = (tpl.replace("{{TIEU_DE_NHO}}", html.escape(TIEU_DE_NHO))
                .replace("{{TIEU_DE}}", html.escape(TIEU_DE))
