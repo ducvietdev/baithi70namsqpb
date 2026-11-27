@@ -44,6 +44,11 @@ p{text-align:justify;margin:0 0 14px}
 /* ảnh có sẵn width/height -> giữ chỗ trước, trang không bị nhảy khi ảnh tải */
 main img{height:auto;max-width:100%;display:inline-block;border-radius:6px;margin:6px auto;background:#eee6da}
 p:has(> img){text-align:center}
+/* chữ chạy bên cạnh ảnh */
+p.wrap{text-align:justify;display:flow-root}
+p.wrap img.fl,p.wrap img.fr{margin:6px 0 10px}
+p.wrap img.fl{float:left;margin-right:22px}
+p.wrap img.fr{float:right;margin-left:22px}
 .tw{overflow-x:auto;margin:16px 0;-webkit-overflow-scrolling:touch}
 table{border-collapse:collapse;width:100%;font-size:16px;line-height:1.5;background:#fff}
 td,th{border:1px solid var(--line);padding:8px;vertical-align:top}
@@ -102,6 +107,8 @@ footer{text-align:center;color:var(--muted);font:14px system-ui,sans-serif;paddi
   /* ảnh dọc (chân dung) không cao quá màn hình */
   main img{width:auto!important;max-height:62vh}
   .qrbox img{max-height:none;width:240px!important}
+  p.wrap{text-align:left}
+  p.wrap img.fl,p.wrap img.fr{float:none;display:block;margin:6px auto 12px}
   table{font-size:15px}
   td,th{padding:6px}
   /* bảng ảnh: xếp từng ảnh một hàng, to rõ */

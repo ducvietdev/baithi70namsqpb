@@ -28,6 +28,7 @@ NHOM_TAC_GIA = [                # mỗi người một dòng; để [] nếu kh�
 ]
 CHI_DAO_NOI_DUNG = "Đảng ủy Phòng TM-HC"   # để "" nếu không hiện
 CHAN_TRANG  = "Bài dự thi tìm hiểu 70 năm Ngày truyền thống Trường Sĩ quan Pháo binh"
+CHU_CANH_ANH_TOI_THIEU = 150   # đoạn có ảnh và từ ngần này ký tự chữ trở lên -> chữ chạy bên cạnh ảnh
 CHO_TAI_WORD = True       # hiện nút tải file Word (.docx) trên trang; False để ẩn
 TEN_FILE_WORD = "bai-du-thi-70-nam-truong-si-quan-phao-binh.docx"   # tên file khi người đọc tải về
 LOGO        = "logo.jpg"   # ảnh logo đặt cạnh file này; để "" nếu không dùng
@@ -199,6 +200,20 @@ def build(src, outdir):
         maxw = min(int(float(wi.group(1)) * 110), w) if wi else w
         return f'<img src="img/{name}" width="{w}" height="{h}" loading="lazy" decoding="async" alt="" style="width:min(100%,{maxw}px)">'
     body = img_re.sub(img_sub, body)
+
+    # đoạn văn có ảnh + chữ dài: cho chữ chạy bên cạnh ảnh (ảnh đầu đoạn -> trái, ảnh giữa/cuối -> phải)
+    def wrap_para(m):
+        inner = m.group(1)
+        if inner.count("<img") != 1 or len(strip_tags(inner)) < CHU_CANH_ANH_TOI_THIEU:
+            return m.group(0)
+        i = inner.find("<img")
+        before, after = strip_tags(inner[:i]), strip_tags(inner[inner.find(">", i) + 1:])
+        if len(after) < CHU_CANH_ANH_TOI_THIEU:   # ảnh ở cuối đoạn: để ảnh nằm dưới chữ, không thả nổi
+            return m.group(0)
+        side = "fl" if not before else "fr"
+        inner = inner.replace("<img ", f'<img class="{side}" ', 1).replace("width:min(100%,", "width:min(46%,", 1)
+        return f'<p class="wrap">{inner}</p>'
+    body = re.sub(r"<p>(.*?)</p>", wrap_para, body, flags=re.S)
 
     # 4) câu hỏi -> mục có id, tiêu đề nổi bật
     questions = []
